@@ -1,0 +1,103 @@
+.regler {
+  max-width: 900px;
+  margin: 10px auto;
+  padding: 0 20px;
+}
+.regler h2 {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+.regler-kort {
+  width: 100%;
+  height: auto;
+  border: 1px solid #e5e7eb;
+  background: white;
+  border-radius: 12px;
+  padding: 8px;
+}
+.regler-info {
+  color: #64748b;
+  margin-bottom: 20px;
+}
+.rules-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.rule-card {
+  background: white;
+  border: 1px solid #d4d4d4;
+  border-radius: 8px;
+  padding: 12px;
+}
+.rule-card p {
+  font-size: 13px;
+}
+
+.right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.small {
+  height: auto;
+}
+
+.tall {
+  height: 320px;
+}
+
+.medium {
+  height: 150px;
+}
+
+.wide {
+  height: 150px;
+  grid-column: 1 / -1;
+}
+.rule-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.text-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.icon-wrapper {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #fef3c7;
+  color: #f59e0b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.poängsystem {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-top: 8px;
+  color: black;
+}
+.exempel-box {
+  width: 100%;
+  height: auto;
+  border: 1px solid black;
+  margin-top: 15px;
+  border-radius: 8px;
+  padding: 5px;
+}
+.exempel-box h5,
+.exempel-box p {
+  color: black;
+}
+.exempel-box h5 {
+  margin: 0 0 10px;
+}
