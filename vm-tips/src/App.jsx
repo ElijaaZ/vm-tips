@@ -6,7 +6,7 @@ import Speltipset from "./components/Speltipset";
 import Regler from "./components/Regler";
 
 function App() {
-  const hasSubmitted = false;
+  const hasSubmitted = true;
   const [activeTab, setActiveTab] = useState("Mitt Spel");
   return (
     <>
@@ -19,7 +19,7 @@ function App() {
         />
         <main>
           {activeTab === "Speltipset" && <Speltipset />}
-          {activeTab === "Mitt Spel" && <h1>Mitt Spel</h1>}
+          {activeTab === "Mitt Spel" && <Speltipset />}
           {activeTab === "Ställning" && <h1>Ställning</h1>}
           {activeTab === "Regler" && <Regler />}
         </main>
