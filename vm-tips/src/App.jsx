@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import { useState } from "react";
 import Speltipset from "./components/Speltipset";
 import Regler from "./components/Regler";
+import Poängtabell from "./components/Poängtabell";
 
 function App() {
   const hasSubmitted = true;
@@ -20,7 +21,7 @@ function App() {
         <main>
           {activeTab === "Speltipset" && <Speltipset />}
           {activeTab === "Mitt Spel" && <Speltipset />}
-          {activeTab === "Ställning" && <h1>Ställning</h1>}
+          {activeTab === "Ställning" && <Poängtabell />}
           {activeTab === "Regler" && <Regler />}
         </main>
       </div>

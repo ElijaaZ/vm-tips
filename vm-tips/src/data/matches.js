@@ -6,6 +6,7 @@ export const matches = [
     group: "A",
     homeTeam: "Mexiko",
     awayTeam: "Sydafrika",
+    result: "1",
   },
   {
     id: 2,
@@ -14,6 +15,7 @@ export const matches = [
     group: "A",
     homeTeam: "Sydkorea",
     awayTeam: "Tjeckien",
+    result: "X",
   },
   {
     id: 3,
@@ -22,6 +24,7 @@ export const matches = [
     group: "B",
     homeTeam: "Kanada",
     awayTeam: "Bosnien och Hercegovina",
+    result: "2",
   },
   {
     id: 4,
@@ -30,6 +33,7 @@ export const matches = [
     group: "D",
     homeTeam: "USA",
     awayTeam: "Paraguay",
+    result: "1",
   },
   {
     id: 5,
@@ -38,6 +42,7 @@ export const matches = [
     group: "B",
     homeTeam: "Qatar",
     awayTeam: "Schweiz",
+    result: null,
   },
   {
     id: 6,
@@ -46,6 +51,7 @@ export const matches = [
     group: "C",
     homeTeam: "Brasilien",
     awayTeam: "Marocko",
+    result: "2",
   },
   {
     id: 7,
@@ -54,6 +60,7 @@ export const matches = [
     group: "C",
     homeTeam: "Haiti",
     awayTeam: "Skottland",
+    result: "X",
   },
   {
     id: 8,
@@ -62,6 +69,7 @@ export const matches = [
     group: "D",
     homeTeam: "Australien",
     awayTeam: "Turkiet",
+    result: null,
   },
   {
     id: 9,
@@ -70,6 +78,7 @@ export const matches = [
     group: "E",
     homeTeam: "Tyskland",
     awayTeam: "Curaçao",
+    result: "1",
   },
   {
     id: 10,
@@ -78,6 +87,7 @@ export const matches = [
     group: "F",
     homeTeam: "Nederländerna",
     awayTeam: "Japan",
+    result: "2",
   },
   {
     id: 11,
@@ -86,6 +96,7 @@ export const matches = [
     group: "E",
     homeTeam: "Elfenbenskusten",
     awayTeam: "Ecuador",
+    result: null,
   },
   {
     id: 12,
@@ -94,6 +105,7 @@ export const matches = [
     group: "F",
     homeTeam: "Sverige",
     awayTeam: "Tunisien",
+    result: "1",
   },
   {
     id: 13,
@@ -102,6 +114,7 @@ export const matches = [
     group: "H",
     homeTeam: "Spanien",
     awayTeam: "Kap Verde",
+    result: "1",
   },
   {
     id: 14,
@@ -110,6 +123,7 @@ export const matches = [
     group: "G",
     homeTeam: "Belgien",
     awayTeam: "Egypten",
+    result: "X",
   },
   {
     id: 15,
@@ -118,6 +132,7 @@ export const matches = [
     group: "H",
     homeTeam: "Saudiarabien",
     awayTeam: "Uruguay",
+    result: null,
   },
   {
     id: 16,
@@ -126,6 +141,7 @@ export const matches = [
     group: "G",
     homeTeam: "Iran",
     awayTeam: "Nya Zeeland",
+    result: "2",
   },
   {
     id: 17,
@@ -134,6 +150,7 @@ export const matches = [
     group: "I",
     homeTeam: "Frankrike",
     awayTeam: "Senegal",
+    result: "1",
   },
   {
     id: 18,
@@ -142,6 +159,7 @@ export const matches = [
     group: "I",
     homeTeam: "Irak",
     awayTeam: "Norge",
+    result: null,
   },
   {
     id: 19,
@@ -150,6 +168,7 @@ export const matches = [
     group: "J",
     homeTeam: "Argentina",
     awayTeam: "Algeriet",
+    result: "1",
   },
   {
     id: 20,
@@ -158,6 +177,7 @@ export const matches = [
     group: "J",
     homeTeam: "Österrike",
     awayTeam: "Jordanien",
+    result: "X",
   },
   {
     id: 21,
@@ -166,6 +186,7 @@ export const matches = [
     group: "K",
     homeTeam: "Portugal",
     awayTeam: "DR Kongo",
+    result: "1",
   },
   {
     id: 22,
@@ -174,6 +195,7 @@ export const matches = [
     group: "L",
     homeTeam: "England",
     awayTeam: "Kroatien",
+    result: "2",
   },
   {
     id: 23,
@@ -182,6 +204,7 @@ export const matches = [
     group: "L",
     homeTeam: "Ghana",
     awayTeam: "Panama",
+    result: null,
   },
   {
     id: 24,
@@ -190,6 +213,7 @@ export const matches = [
     group: "K",
     homeTeam: "Uzbekistan",
     awayTeam: "Colombia",
+    result: "X",
   },
   {
     id: 25,
@@ -198,6 +222,7 @@ export const matches = [
     group: "A",
     homeTeam: "Tjeckien",
     awayTeam: "Sydafrika",
+    result: "2",
   },
   {
     id: 26,
@@ -206,6 +231,7 @@ export const matches = [
     group: "B",
     homeTeam: "Schweiz",
     awayTeam: "Bosnien och Hercegovina",
+    result: null,
   },
   {
     id: 27,
@@ -214,6 +240,7 @@ export const matches = [
     group: "B",
     homeTeam: "Kanada",
     awayTeam: "Qatar",
+    result: "1",
   },
   {
     id: 28,
@@ -222,6 +249,7 @@ export const matches = [
     group: "A",
     homeTeam: "Mexiko",
     awayTeam: "Sydkorea",
+    result: "X",
   },
   {
     id: 29,
@@ -230,6 +258,7 @@ export const matches = [
     group: "D",
     homeTeam: "USA",
     awayTeam: "Australien",
+    result: "1",
   },
   {
     id: 30,
@@ -238,6 +267,7 @@ export const matches = [
     group: "C",
     homeTeam: "Skottland",
     awayTeam: "Marocko",
+    result: "2",
   },
   {
     id: 31,
@@ -246,6 +276,7 @@ export const matches = [
     group: "C",
     homeTeam: "Brasilien",
     awayTeam: "Haiti",
+    result: null,
   },
   {
     id: 32,
@@ -254,6 +285,7 @@ export const matches = [
     group: "D",
     homeTeam: "Turkiet",
     awayTeam: "Paraguay",
+    result: "X",
   },
   {
     id: 33,
@@ -262,6 +294,7 @@ export const matches = [
     group: "F",
     homeTeam: "Nederländerna",
     awayTeam: "Sverige",
+    result: "2",
   },
   {
     id: 34,
@@ -270,6 +303,7 @@ export const matches = [
     group: "E",
     homeTeam: "Tyskland",
     awayTeam: "Elfenbenskusten",
+    result: "1",
   },
   {
     id: 35,
@@ -278,6 +312,7 @@ export const matches = [
     group: "E",
     homeTeam: "Ecuador",
     awayTeam: "Curaçao",
+    result: null,
   },
   {
     id: 36,
@@ -286,6 +321,7 @@ export const matches = [
     group: "F",
     homeTeam: "Tunisien",
     awayTeam: "Japan",
+    result: "X",
   },
   {
     id: 37,
@@ -294,6 +330,7 @@ export const matches = [
     group: "H",
     homeTeam: "Spanien",
     awayTeam: "Saudiarabien",
+    result: "1",
   },
   {
     id: 38,
@@ -302,6 +339,7 @@ export const matches = [
     group: "G",
     homeTeam: "Belgien",
     awayTeam: "Iran",
+    result: "2",
   },
   {
     id: 39,
@@ -310,6 +348,7 @@ export const matches = [
     group: "H",
     homeTeam: "Uruguay",
     awayTeam: "Kap Verde",
+    result: null,
   },
   {
     id: 40,
@@ -318,6 +357,7 @@ export const matches = [
     group: "G",
     homeTeam: "Nya Zeeland",
     awayTeam: "Egypten",
+    result: "X",
   },
   {
     id: 41,
@@ -326,6 +366,7 @@ export const matches = [
     group: "J",
     homeTeam: "Argentina",
     awayTeam: "Österrike",
+    result: "1",
   },
   {
     id: 42,
@@ -334,6 +375,7 @@ export const matches = [
     group: "I",
     homeTeam: "Frankrike",
     awayTeam: "Irak",
+    result: "1",
   },
   {
     id: 43,
@@ -342,6 +384,7 @@ export const matches = [
     group: "I",
     homeTeam: "Norge",
     awayTeam: "Senegal",
+    result: "2",
   },
   {
     id: 44,
@@ -350,6 +393,7 @@ export const matches = [
     group: "J",
     homeTeam: "Jordanien",
     awayTeam: "Algeriet",
+    result: null,
   },
   {
     id: 45,
@@ -358,6 +402,7 @@ export const matches = [
     group: "K",
     homeTeam: "Portugal",
     awayTeam: "Uzbekistan",
+    result: "1",
   },
   {
     id: 46,
@@ -366,6 +411,7 @@ export const matches = [
     group: "L",
     homeTeam: "England",
     awayTeam: "Ghana",
+    result: "X",
   },
   {
     id: 47,
@@ -374,6 +420,7 @@ export const matches = [
     group: "L",
     homeTeam: "Panama",
     awayTeam: "Kroatien",
+    result: "2",
   },
   {
     id: 48,
@@ -382,6 +429,7 @@ export const matches = [
     group: "K",
     homeTeam: "Colombia",
     awayTeam: "DR Kongo",
+    result: null,
   },
   {
     id: 49,
@@ -390,6 +438,7 @@ export const matches = [
     group: "B",
     homeTeam: "Schweiz",
     awayTeam: "Kanada",
+    result: "1",
   },
   {
     id: 50,
@@ -398,6 +447,7 @@ export const matches = [
     group: "B",
     homeTeam: "Bosnien och Hercegovina",
     awayTeam: "Qatar",
+    result: "X",
   },
   {
     id: 51,
@@ -406,6 +456,7 @@ export const matches = [
     group: "C",
     homeTeam: "Skottland",
     awayTeam: "Brasilien",
+    result: "2",
   },
   {
     id: 52,
@@ -414,6 +465,7 @@ export const matches = [
     group: "C",
     homeTeam: "Marocko",
     awayTeam: "Haiti",
+    result: null,
   },
   {
     id: 53,
@@ -422,6 +474,7 @@ export const matches = [
     group: "A",
     homeTeam: "Tjeckien",
     awayTeam: "Mexiko",
+    result: "1",
   },
   {
     id: 54,
@@ -430,6 +483,7 @@ export const matches = [
     group: "A",
     homeTeam: "Sydafrika",
     awayTeam: "Sydkorea",
+    result: "2",
   },
   {
     id: 55,
@@ -438,6 +492,7 @@ export const matches = [
     group: "E",
     homeTeam: "Curaçao",
     awayTeam: "Elfenbenskusten",
+    result: "X",
   },
   {
     id: 56,
@@ -446,6 +501,7 @@ export const matches = [
     group: "E",
     homeTeam: "Ecuador",
     awayTeam: "Tyskland",
+    result: null,
   },
   {
     id: 57,
@@ -454,6 +510,7 @@ export const matches = [
     group: "F",
     homeTeam: "Japan",
     awayTeam: "Sverige",
+    result: "2",
   },
   {
     id: 58,
@@ -462,6 +519,7 @@ export const matches = [
     group: "F",
     homeTeam: "Tunisien",
     awayTeam: "Nederländerna",
+    result: "1",
   },
   {
     id: 59,
@@ -470,6 +528,7 @@ export const matches = [
     group: "D",
     homeTeam: "Turkiet",
     awayTeam: "USA",
+    result: "X",
   },
   {
     id: 60,
@@ -478,6 +537,7 @@ export const matches = [
     group: "D",
     homeTeam: "Paraguay",
     awayTeam: "Australien",
+    result: null,
   },
   {
     id: 61,
@@ -486,6 +546,7 @@ export const matches = [
     group: "I",
     homeTeam: "Norge",
     awayTeam: "Frankrike",
+    result: "2",
   },
   {
     id: 62,
@@ -494,6 +555,7 @@ export const matches = [
     group: "I",
     homeTeam: "Senegal",
     awayTeam: "Irak",
+    result: "1",
   },
   {
     id: 63,
@@ -502,6 +564,7 @@ export const matches = [
     group: "H",
     homeTeam: "Kap Verde",
     awayTeam: "Saudiarabien",
+    result: "X",
   },
   {
     id: 64,
@@ -510,6 +573,7 @@ export const matches = [
     group: "H",
     homeTeam: "Uruguay",
     awayTeam: "Spanien",
+    result: null,
   },
   {
     id: 65,
@@ -518,6 +582,7 @@ export const matches = [
     group: "G",
     homeTeam: "Egypten",
     awayTeam: "Iran",
+    result: "1",
   },
   {
     id: 66,
@@ -526,6 +591,7 @@ export const matches = [
     group: "G",
     homeTeam: "Nya Zeeland",
     awayTeam: "Belgien",
+    result: "2",
   },
   {
     id: 67,
@@ -534,6 +600,7 @@ export const matches = [
     group: "L",
     homeTeam: "Panama",
     awayTeam: "England",
+    result: "X",
   },
   {
     id: 68,
@@ -542,6 +609,7 @@ export const matches = [
     group: "L",
     homeTeam: "Kroatien",
     awayTeam: "Ghana",
+    result: null,
   },
   {
     id: 69,
@@ -550,6 +618,7 @@ export const matches = [
     group: "K",
     homeTeam: "Colombia",
     awayTeam: "Portugal",
+    result: "2",
   },
   {
     id: 70,
@@ -558,6 +627,7 @@ export const matches = [
     group: "K",
     homeTeam: "DR Kongo",
     awayTeam: "Uzbekistan",
+    result: "1",
   },
   {
     id: 71,
@@ -566,6 +636,7 @@ export const matches = [
     group: "J",
     homeTeam: "Algeriet",
     awayTeam: "Österrike",
+    result: "X",
   },
   {
     id: 72,
@@ -574,5 +645,6 @@ export const matches = [
     group: "J",
     homeTeam: "Jordanien",
     awayTeam: "Argentina",
+    result: null,
   },
 ];

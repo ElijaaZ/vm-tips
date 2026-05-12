@@ -4,7 +4,7 @@
   padding: 0 20px;
 }
 .speltipset h2 {
-  font-size: 32px;
+  font-size: 30px;
   margin-bottom: 8px;
 }
 .speltipset-info {
@@ -39,7 +39,7 @@
 }
 
 .match-table td {
-  padding: 16px 14px;
+  padding: 14px 8px;
   border-bottom: 1px solid #f1f5f9;
   font-weight: 600;
   color: black;
@@ -66,30 +66,47 @@
   color: white;
   border-color: #2563eb;
 }
-
-.pagination {
+.tip-btn.selected {
+  background: #22c55e;
+  color: white;
+  border-color: #22c55e;
+}
+.tips-summary {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.tips-counts {
+  margin-bottom: 8px;
+}
+.bottom-section {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
   margin-top: 20px;
 }
-
-.pagination button {
-  border: none;
-  background: #2563eb;
-  color: white;
-  padding: 10px 18px;
-  border-radius: 8px;
-  font-weight: 700;
-  cursor: pointer;
+.bottom-actions .pagination {
+  grid-column: 2;
 }
-
-.pagination button:disabled {
+.submit-btn {
+  justify-self: end;
+  background-color: #2563eb;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+  color: white;
+  font-weight: bold;
+}
+.submit-btn:disabled {
   background: #cbd5e1;
+  color: #64748b;
   cursor: not-allowed;
 }
 
-.pagination span {
-  color: #64748b;
-  font-weight: 600;
+@media (max-width: 768px) {
+  .tips-summary {
+    flex-direction: column;
+  }
 }
