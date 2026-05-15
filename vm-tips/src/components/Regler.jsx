@@ -119,7 +119,6 @@ const Regler = () => {
                   Varje bonusfråga ger 3 poäng.
                 </p>
                 <ul className="bonus-lista">
-                  <li>Vem vinner VM?</li>
                   <li>Vem blir turneringens skyttekung?</li>
                   <li>Vem blir turneringens assistkung?</li>
                   <li>Vilket lag gör flest mål?</li>

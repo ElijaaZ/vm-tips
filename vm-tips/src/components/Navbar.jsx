@@ -1,18 +1,32 @@
-const Navbar = ({ activeTab, setActiveTab, hasSubmitted }) => {
-  const tabs = hasSubmitted
-    ? ["Mitt Spel", "Ställning", "Regler"]
-    : ["Speltipset", "Regler"];
+import { useNavigate, useLocation } from "react-router-dom";
+import "../index.css";
+
+const Navbar = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const isActive = (path) => (location.pathname === path ? "active" : "");
+
   return (
     <nav className="navbar">
-      {tabs.map((tab) => (
-        <button
-          key={tab}
-          className={activeTab === tab ? "nav-link active" : "nav-link"}
-          onClick={() => setActiveTab(tab)}
-        >
-          {tab}
-        </button>
-      ))}
+      <button
+        className={`nav-link ${isActive("/")}`}
+        onClick={() => navigate("/")}
+      >
+        Speltipset
+      </button>
+      <button
+        className={`nav-link ${isActive("/poangtabell")}`}
+        onClick={() => navigate("/poangtabell")}
+      >
+        Poängtabell
+      </button>
+      <button
+        className={`nav-link ${isActive("/regler")}`}
+        onClick={() => navigate("/regler")}
+      >
+        Regler
+      </button>
     </nav>
   );
 };

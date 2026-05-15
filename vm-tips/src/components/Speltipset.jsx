@@ -1,20 +1,105 @@
-import { matches } from "../data/matches";
 import "../styles/speltipset.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Pagination from "./Pagination";
 import { supabase } from "../lib/supabaseClient";
+import BonusAnswers from "./BonusAnswers";
 
-const Speltipset = () => {
+const Speltipset = ({ user, hasSubmitted, setHasSubmitted, participantId }) => {
   const [predictions, setPredictions] = useState({});
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [, setParticipantId] = useState(null);
+  const [, setLoading] = useState(true);
+  const [matches, setMatches] = useState([]);
   const [bonusAnswers, setBonusAnswers] = useState({
-    winner: "",
     topScorer: "",
     topAssister: "",
     mostGoalsTeam: "",
     totalGoals: "",
   });
+
+  useEffect(() => {
+    const fetchMatches = async () => {
+      const { data, error } = await supabase
+        .from("matches")
+        .select("*")
+        .order("id");
+
+      if (error) {
+        console.error(error);
+        return;
+      }
+
+      setMatches(data);
+    };
+    fetchMatches();
+  }, []);
+
+  useEffect(() => {
+    const loadUserTips = async () => {
+      // Bestäm vilken participant vi ska hämta
+      const userOrParticipantId = participantId || user?.id;
+      if (!userOrParticipantId) return;
+
+      try {
+        const { data: participant, error } = await supabase
+          .from("participants")
+          .select(
+            `
+          id,
+          submitted_at,
+          predictions (
+            match_id,
+            prediction
+          ),
+          bonus_answers (
+            top_scorer,
+            top_assister,
+            most_goals_team,
+            total_goals
+          )
+        `,
+          )
+          .maybeSingle()
+          // Om participantId skickas används id, annars user_id
+          .eq(participantId ? "id" : "user_id", userOrParticipantId);
+
+        if (error) {
+          console.error(error);
+          setLoading(false);
+          return;
+        }
+
+        if (participant) {
+          // Om vi visar en annan participant ska vi inte ändra hasSubmitted
+          if (!participantId) setHasSubmitted(true);
+          setParticipantId(participant.id);
+
+          // Ladda predictions i samma format som tidigare
+          const loadedPredictions = {};
+          participant.predictions.forEach((p) => {
+            loadedPredictions[p.match_id] = p.prediction.split("");
+          });
+          setPredictions(loadedPredictions);
+
+          // Ladda bonusfrågorna
+          const bonus = participant.bonus_answers?.[0];
+          if (bonus) {
+            setBonusAnswers({
+              topScorer: bonus.top_scorer,
+              topAssister: bonus.top_assister,
+              mostGoalsTeam: bonus.most_goals_team,
+              totalGoals: String(bonus.total_goals),
+            });
+          }
+        }
+      } catch (err) {
+        console.error("Kunde inte ladda participant:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadUserTips();
+  }, [user, participantId]);
 
   const allTips = Object.values(predictions);
   const allBonusAnswered = Object.values(bonusAnswers).every(
@@ -24,15 +109,17 @@ const Speltipset = () => {
   const halvgarderingar = allTips.filter((tips) => tips.length === 2).length;
   const rakaTips = allTips.filter((tips) => tips.length === 1).length;
 
+  const filledMatches = Object.values(predictions).filter(
+    (tips) => tips.length > 0,
+  ).length;
   const isValid =
-    firstName.trim() &&
-    lastName.trim() &&
     allBonusAnswered &&
-    Object.keys(predictions).length === matches.length &&
+    filledMatches === matches.length &&
     halvgarderingar === 6 &&
     helgarderingar === 3;
 
   const handleTip = (matchId, value) => {
+    if (hasSubmitted) return;
     setPredictions((prev) => {
       const currentTips = prev[matchId] || [];
       const alreadySelected = currentTips.includes(value);
@@ -57,8 +144,9 @@ const Speltipset = () => {
     const { data: participant, error: participantError } = await supabase
       .from("participants")
       .insert({
-        first_name: firstName.trim(),
-        last_name: lastName.trim(),
+        user_id: user.id,
+        first_name: user.user_metadata.firstName,
+        last_name: user.user_metadata.lastName,
         submitted_at: new Date().toISOString(),
         match_points: 0,
         bonus_points: 0,
@@ -92,7 +180,6 @@ const Speltipset = () => {
 
     const { error: bonusError } = await supabase.from("bonus_answers").insert({
       participant_id: participant.id,
-      winner: bonusAnswers.winner.trim(),
       top_scorer: bonusAnswers.topScorer.trim(),
       top_assister: bonusAnswers.topAssister.trim(),
       most_goals_team: bonusAnswers.mostGoalsTeam.trim(),
@@ -104,7 +191,8 @@ const Speltipset = () => {
       alert("Kunde inte spara bonusfrågorna.");
       return;
     }
-
+    setHasSubmitted(true);
+    setParticipantId(participant.id);
     alert("Tips skickat!");
   };
 
@@ -127,10 +215,7 @@ const Speltipset = () => {
       }
     });
 
-    setFirstName("Test");
-    setLastName("Person");
     setBonusAnswers({
-      winner: "Spanien",
       topScorer: "Mbappe",
       topAssister: "Yamal",
       mostGoalsTeam: "Frankrike",
@@ -142,57 +227,25 @@ const Speltipset = () => {
   return (
     <section className="speltipset">
       <h2>Speltipset</h2>
-      <p className="speltipset-info">
-        Tippa alla matcher och fyll i bonusfrågorna.
-      </p>
+
+      {!hasSubmitted && (
+        <p className="speltipset-info">
+          Tippa alla matcher och fyll i bonusfrågorna.
+        </p>
+      )}
+
+      {hasSubmitted && (
+        <p className="speltipset-info">
+          Du har redan skickat in ditt tips. Du kan nu bara se dina svar.
+        </p>
+      )}
 
       <form onSubmit={handleSubmit}>
-        <input
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-          placeholder="Förnamn"
+        <BonusAnswers
+          bonusAnswers={bonusAnswers}
+          setBonusAnswers={setBonusAnswers}
+          hasSubmitted={hasSubmitted}
         />
-        <input
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-          placeholder="Efternamn"
-        />
-        <input
-          value={bonusAnswers.winner}
-          onChange={(e) =>
-            setBonusAnswers({ ...bonusAnswers, winner: e.target.value })
-          }
-          placeholder="Vilka vinner VM?"
-        />
-        <input
-          value={bonusAnswers.topScorer}
-          onChange={(e) =>
-            setBonusAnswers({ ...bonusAnswers, topScorer: e.target.value })
-          }
-          placeholder="Skyttekung?"
-        />
-        <input
-          value={bonusAnswers.topAssister}
-          onChange={(e) =>
-            setBonusAnswers({ ...bonusAnswers, topAssister: e.target.value })
-          }
-          placeholder="Assistkung?"
-        />
-        <input
-          value={bonusAnswers.mostGoalsTeam}
-          onChange={(e) =>
-            setBonusAnswers({ ...bonusAnswers, mostGoalsTeam: e.target.value })
-          }
-          placeholder="Vilket lag gör flest mål?"
-        />
-        <input
-          value={bonusAnswers.totalGoals}
-          onChange={(e) =>
-            setBonusAnswers({ ...bonusAnswers, totalGoals: e.target.value })
-          }
-          placeholder="Hur många mål blir det totalt i gruppspelet?"
-        />
-
         <div className="match-card">
           <div className="tips-summary">
             <h3>Gruppspelsmatcher</h3>
@@ -218,15 +271,16 @@ const Speltipset = () => {
             <tbody>
               {currentMatches.map((match) => (
                 <tr key={match.id}>
-                  <td>{match.date}</td>
-                  <td>{match.time}</td>
-                  <td>{match.group}</td>
+                  <td>{new Date(match.kickoff).toLocaleDateString("sv-SE")}</td>
+                  <td>{match.kickoff.slice(11, 16)}</td>
+                  <td>{match.group_name}</td>
                   <td>
-                    {match.homeTeam} <span className="vs">vs</span>{" "}
-                    {match.awayTeam}
+                    {match.home_team} <span className="vs">vs</span>{" "}
+                    {match.away_team}
                   </td>
                   <td>
                     <button
+                      disabled={hasSubmitted}
                       type="button"
                       className={`tip-btn ${
                         predictions[match.id]?.includes("1") ? "selected" : ""
@@ -238,6 +292,7 @@ const Speltipset = () => {
                   </td>
                   <td>
                     <button
+                      disabled={hasSubmitted}
                       type="button"
                       className={`tip-btn ${
                         predictions[match.id]?.includes("X") ? "selected" : ""
@@ -249,6 +304,7 @@ const Speltipset = () => {
                   </td>
                   <td>
                     <button
+                      disabled={hasSubmitted}
                       type="button"
                       className={`tip-btn ${
                         predictions[match.id]?.includes("2") ? "selected" : ""
@@ -277,9 +333,11 @@ const Speltipset = () => {
             <button type="button" onClick={fillTestData}>
               Fyll testdata
             </button>
-            <button type="submit" className="submit-btn" disabled={!isValid}>
-              Submit
-            </button>
+            {!hasSubmitted && (
+              <button type="submit" className="submit-btn" disabled={!isValid}>
+                Submit
+              </button>
+            )}
           </div>
         </div>
       </form>

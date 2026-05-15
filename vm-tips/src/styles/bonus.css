@@ -1,0 +1,34 @@
+.bonus-section {
+  background: white;
+  border-radius: 16px;
+}
+
+.bonus-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 7px;
+  margin-bottom: 10px;
+}
+
+.bonus-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.bonus-field label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #555;
+}
+
+.bonus-field input {
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px solid #dcdcdc;
+}
+
+.bonus-field input:disabled {
+  background: #f3f3f3;
+  color: #555;
+}
