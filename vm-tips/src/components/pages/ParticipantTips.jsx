@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { supabase } from "../lib/supabaseClient";
+import { supabase } from "../../lib/supabaseClient";
 
 const ParticipantTips = () => {
   const { id } = useParams();
@@ -43,7 +43,6 @@ const ParticipantTips = () => {
     fetchParticipantTips();
   }, [id]);
 
-  // ✅ Ett return för hela komponenten
   return (
     <section className="participant-tips-section">
       {!participant || !matches.length ? (
@@ -75,7 +74,7 @@ const ParticipantTips = () => {
             </div>
           )}
           <div className="match-card">
-            <table className="match-table">
+            <table className="match-table-participant">
               <thead>
                 <tr>
                   <th>Match</th>
@@ -88,8 +87,9 @@ const ParticipantTips = () => {
                 {matches.map((match) => (
                   <tr key={match.id}>
                     <td>
-                      {match.home_team} <span className="vs">vs</span>{" "}
-                      {match.away_team}
+                      <strong>{match.home_team}</strong>{" "}
+                      <span className="vs">vs</span>{" "}
+                      <strong>{match.away_team}</strong>
                     </td>
                     {["1", "X", "2"].map((v) => (
                       <td key={v} style={{ textAlign: "center" }}>

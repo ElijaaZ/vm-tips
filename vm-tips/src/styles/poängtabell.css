@@ -36,11 +36,3 @@
 .leaderboard-table tbody tr:hover {
   background: #f8fafc;
 }
-
-.pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 14px;
-  margin-top: 18px;
-}

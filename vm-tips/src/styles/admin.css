@@ -1,0 +1,89 @@
+.admin-section {
+  padding: 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.admin-title {
+  text-align: center;
+  margin-bottom: 32px;
+  font-size: 32px;
+}
+
+.admin-matches {
+  display: grid;
+  gap: 24px;
+}
+
+.admin-match-card {
+  background: #fff;
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.admin-match-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.group-name {
+  margin-top: 8px;
+  color: grey;
+}
+
+.score-inputs {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.score-inputs input {
+  width: 60px;
+  padding: 8px;
+  font-size: 16px;
+  text-align: center;
+  border-radius: 8px;
+  border: 1px solid black;
+  outline: none;
+}
+
+.score-divider {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.save-button {
+  background: #00b894;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.match-status {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.finished {
+  background: #14532d;
+  color: #86efac;
+}
+
+.pending {
+  background: #78350f;
+  color: #fcd34d;
+}
+
+.admin-loading {
+  text-align: center;
+  margin-top: 48px;
+}

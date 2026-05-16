@@ -1,6 +1,6 @@
 import { useState } from "react";
-import "../styles/auth.css";
-import { supabase } from "../lib/supabaseClient";
+import "../../styles/auth.css";
+import { supabase } from "../../lib/supabaseClient";
 
 const Auth = ({ setUser }) => {
   const [isSignup, setIsSignup] = useState(false);

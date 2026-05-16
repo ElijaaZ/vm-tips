@@ -23,6 +23,7 @@
 
 * {
   box-sizing: border-box;
+  font-family: "Poppins";
 }
 body,
 h1,
@@ -68,16 +69,50 @@ h3 {
 
 .header {
   background-color: #030c25;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 16px 24px;
+}
+.header-titles {
   text-align: center;
-  padding: 20px;
 }
 .vmTitle {
+  margin: 0;
   color: #fff;
 }
 .vmSubtitle {
+  margin: 0;
   color: #e0b12e;
 }
-
+.header-user {
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  display: flex;
+  gap: 10px;
+  transform: translateY(-50%);
+  align-items: center;
+}
+.logout-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logout-btn:hover svg {
+  fill: #ef4444;
+}
+.username {
+  font-weight: 500;
+  color: white;
+  margin: 0;
+  white-space: nowrap;
+}
 .navbar {
   display: flex;
   justify-content: center;
@@ -106,6 +141,7 @@ h3 {
   justify-content: space-between;
   align-items: center;
   margin-top: 20px;
+  gap: 14px;
 }
 
 .pagination button {
@@ -131,6 +167,17 @@ h3 {
   max-width: 1100px;
   margin: 10px auto;
 }
+.match-table-participant {
+  width: 100%;
+}
+.match-table-participant th {
+  text-align: left;
+  padding: 14px;
+}
+.match-table-participant td {
+  font-size: 24px;
+  color: black;
+}
 .participant-tips-section h2 {
   text-align: center;
   margin-bottom: 1.5rem;
@@ -142,4 +189,40 @@ h3 {
 }
 .bonus-answers p {
   color: black;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    max-width: 390px;
+    flex-wrap: nowrap;
+    gap: 5px;
+  }
+  .logout-btn {
+    position: absolute;
+    right: 16px;
+  }
+  .username {
+    display: none;
+  }
+  .pagination button {
+    padding: 8px 12px;
+    font-size: 13px;
+    height: 40px;
+    min-width: 50px;
+    border-radius: 10px;
+  }
+  .pagination span {
+    font-size: 11px;
+  }
+  .bonus-answers {
+    flex-direction: column;
+    margin-bottom: 15px;
+  }
+  .participant-tips-section {
+    max-width: 390px;
+    padding: 0 10px;
+  }
+  .match-table-participant td {
+    font-size: 14px;
+  }
 }

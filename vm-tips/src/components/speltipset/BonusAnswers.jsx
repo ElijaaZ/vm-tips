@@ -1,4 +1,4 @@
-import "../styles/bonus.css";
+import "../../styles/bonus.css";
 
 const BonusAnswers = ({ bonusAnswers, setBonusAnswers, hasSubmitted }) => {
   return (

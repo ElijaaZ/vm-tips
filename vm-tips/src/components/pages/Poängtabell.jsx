@@ -1,8 +1,8 @@
-import "../styles/poängtabell.css";
+import "../../styles/poängtabell.css";
 import { useEffect, useState } from "react";
-import Pagination from "./Pagination";
-import { supabase } from "../lib/supabaseClient";
-import { calculateMatchPoints } from "../utils/calculatePoints";
+import Pagination from "../speltipset/Pagination";
+import { supabase } from "../../lib/supabaseClient";
+import { calculateMatchPoints } from "../../utils/calculatePoints";
 import ParticipantTips from "./ParticipantTips";
 import { useNavigate } from "react-router-dom";
 
@@ -94,9 +94,7 @@ const Poängtabell = ({ hasSubmitted }) => {
             <tr>
               <th>#</th>
               <th>Namn</th>
-              <th>Bonus</th>
-              <th>Matchtips</th>
-              <th>Totalpoäng</th>
+              <th>Poäng</th>
             </tr>
           </thead>
           <tbody>
@@ -109,8 +107,6 @@ const Poängtabell = ({ hasSubmitted }) => {
                 <td>
                   {person.first_name} {person.last_name}
                 </td>
-                <td>{person.bonus_points}p</td>
-                <td>{person.match_points}p</td>
                 <td>
                   <strong>{person.total_points}p</strong>
                 </td>

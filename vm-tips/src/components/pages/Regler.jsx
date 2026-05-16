@@ -1,4 +1,4 @@
-import "../styles/regler.css";
+import "../../styles/regler.css";
 import {
   Trophy,
   Goal,

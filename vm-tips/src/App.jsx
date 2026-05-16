@@ -1,19 +1,22 @@
 import "./App.css";
-import AppHeader from "./components/AppHeader";
-import Navbar from "./components/Navbar";
+import AppHeader from "./components/layout/AppHeader";
+import Navbar from "./components/layout/Navbar";
 import { useEffect, useState } from "react";
-import Speltipset from "./components/Speltipset";
-import Regler from "./components/Regler";
-import Poängtabell from "./components/Poängtabell";
-import Auth from "./components/Auth";
+import Speltipset from "./components/pages/Speltipset";
+import Regler from "./components/pages/Regler";
+import Poängtabell from "./components/pages/Poängtabell";
+import Auth from "./components/auth/Auth";
 import { supabase } from "./lib/supabaseClient";
-import { Routes, Route } from "react-router-dom";
-import ParticipantTips from "./components/ParticipantTips";
+import { Routes, Route, Navigate } from "react-router-dom";
+import ParticipantTips from "./components/pages/ParticipantTips";
+import AdminPanel from "./components/pages/AdminPanel";
 
 function App() {
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL;
 
   useEffect(() => {
     const getSession = async () => {
@@ -49,8 +52,8 @@ function App() {
 
   return (
     <div>
-      <AppHeader handleLogout={handleLogout} />
-      <Navbar />
+      <AppHeader handleLogout={handleLogout} user={user} />
+      <Navbar user={user} adminEmail={ADMIN_EMAIL} />
 
       <main>
         <Routes>
@@ -78,6 +81,16 @@ function App() {
           />
           <Route path="/regler" element={<Regler />} />
           <Route path="/tips/:id" element={<ParticipantTips />} />
+          <Route
+            path="/admin"
+            element={
+              user.email === ADMIN_EMAIL ? (
+                <AdminPanel user={user} />
+              ) : (
+                <Navigate to="/" replace />
+              )
+            }
+          />
         </Routes>
       </main>
     </div>

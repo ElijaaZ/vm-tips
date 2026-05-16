@@ -1,7 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import "../index.css";
+import "../../index.css";
 
-const Navbar = () => {
+const Navbar = ({ user, adminEmail }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -27,6 +27,14 @@ const Navbar = () => {
       >
         Regler
       </button>
+      {user?.email === adminEmail && (
+        <button
+          className={`nav-link ${isActive("/admin")}`}
+          onClick={() => navigate("/admin")}
+        >
+          Admin
+        </button>
+      )}
     </nav>
   );
 };
