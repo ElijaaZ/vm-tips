@@ -29,8 +29,14 @@ const Regler = () => {
               <p>
                 Tippa resultatet i alla gruppspelsmatcher och svara på
                 bonusfrågorna. Du får poäng baserat på hur många matcher du har
-                rätt på och dina svar på bonusfrågorna.
+                rätt på och dina svar på bonusfrågorna. <br /> Alla går in med
+                200kr och priset fördelas följande:
               </p>
+              <ul>
+                <li>🥇 1:a: 70%</li>
+                <li>🥈 2:a: 30%</li>
+                <li>🥉 3:a: Insatsen tillbaka (200 kr)</li>
+              </ul>
             </div>
           </div>
         </div>
