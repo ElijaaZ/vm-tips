@@ -2,8 +2,9 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabaseClient";
 
-const ParticipantTips = () => {
+const ParticipantTips = ({ participantId }) => {
   const { id } = useParams();
+  const activeId = participantId ?? id;
   const [participant, setParticipant] = useState(null);
   const [matches, setMatches] = useState([]);
   const [predictions, setPredictions] = useState({});
@@ -24,7 +25,7 @@ const ParticipantTips = () => {
         .select(
           `id, first_name, last_name, predictions (match_id, prediction),bonus_answers (top_scorer, top_assister, most_goals_team, total_goals)`,
         )
-        .eq("id", id)
+        .eq("id", activeId)
         .single();
 
       if (error) return console.error(error);
@@ -40,22 +41,19 @@ const ParticipantTips = () => {
         setBonusAnswers(participantData.bonus_answers[0]);
       }
     };
-    fetchParticipantTips();
-  }, [id]);
+    if (activeId) fetchParticipantTips();
+  }, [activeId]);
 
   return (
     <section className="participant-tips-section">
       {!participant || !matches.length ? (
-        <p>Laddar...</p>
+        <p className="tips-loading">Laddar...</p>
       ) : (
         <>
-          <h2>
-            Tips från {participant.first_name} {participant.last_name}
-          </h2>
-
           {bonusAnswers && (
-            <div>
+            <div className="bonus-panel">
               <h3>Bonusfrågor</h3>
+
               <div className="bonus-answers">
                 <p>
                   <strong>Top scorer:</strong> {bonusAnswers.top_scorer}
@@ -73,33 +71,33 @@ const ParticipantTips = () => {
               </div>
             </div>
           )}
-          <div className="match-card">
-            <table className="match-table-participant">
-              <thead>
-                <tr>
-                  <th>Match</th>
-                  <th>1</th>
-                  <th>X</th>
-                  <th>2</th>
-                </tr>
-              </thead>
-              <tbody>
-                {matches.map((match) => (
-                  <tr key={match.id}>
-                    <td>
-                      <strong>{match.home_team}</strong>{" "}
-                      <span className="vs">vs</span>{" "}
-                      <strong>{match.away_team}</strong>
-                    </td>
+
+          <div className="tips-grid">
+            {matches.map((match) => {
+              const selected = predictions[match.id] || [];
+
+              return (
+                <div key={match.id} className="tip-match-card">
+                  <div className="tip-match-info">
+                    <strong>
+                      {match.home_team} – {match.away_team}
+                    </strong>
+                    <span>{match.date || match.match_date}</span>
+                  </div>
+
+                  <div className="tip-options">
                     {["1", "X", "2"].map((v) => (
-                      <td key={v} style={{ textAlign: "center" }}>
-                        {predictions[match.id]?.includes(v) ? "✔️" : ""}
-                      </td>
+                      <span
+                        key={v}
+                        className={selected.includes(v) ? "selected" : ""}
+                      >
+                        {v}
+                      </span>
                     ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </>
       )}

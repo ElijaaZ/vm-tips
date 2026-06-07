@@ -4,12 +4,10 @@ import Pagination from "../speltipset/Pagination";
 import { supabase } from "../../lib/supabaseClient";
 import { calculateMatchPoints } from "../../utils/calculatePoints";
 import ParticipantTips from "./ParticipantTips";
-import { useNavigate } from "react-router-dom";
 
 const Poängtabell = ({ hasSubmitted }) => {
-  const navigate = useNavigate();
+  const [openParticipantId, setOpenParticipantId] = useState(null);
   const [participants, setParticipants] = useState([]);
-  const [selectedParticipant, setSelectedParticipant] = useState(null);
   const [page, setPage] = useState(1);
   const perPage = 15;
 
@@ -84,37 +82,50 @@ const Poängtabell = ({ hasSubmitted }) => {
   return (
     <section className="poängtabell">
       <h2>Poängtabell</h2>
+
       <p>
         Se hur alla ligger till i tävlingen. Klicka på ett namn för att se
         personens tips.
       </p>
-      <div className="tabell-wrapper">
-        <table className="leaderboard-table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Namn</th>
-              <th>Poäng</th>
-            </tr>
-          </thead>
-          <tbody>
-            {visibleParticipants.map((person, index) => (
-              <tr
-                key={person.id}
-                onClick={() => navigate(`/tips/${person.id}`)}
+
+      <div className="leaderboard">
+        <div className="leaderboard-head">
+          <div>#</div>
+          <div>Namn</div>
+          <div>Poäng</div>
+        </div>
+
+        {visibleParticipants.map((person, index) => {
+          const isOpen = openParticipantId === person.id;
+
+          return (
+            <div key={person.id} className="leaderboard-item">
+              <div
+                className="leaderboard-header"
+                onClick={() => setOpenParticipantId(isOpen ? null : person.id)}
               >
-                <td>{startIndex + index + 1}</td>
-                <td>
+                <div className="rank">{startIndex + index + 1}</div>
+
+                <div className="participant">
+                  <span className={`arrow ${isOpen ? "open" : ""}`}>▼</span>
                   {person.first_name} {person.last_name}
-                </td>
-                <td>
+                </div>
+
+                <div className="points">
                   <strong>{person.total_points}p</strong>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                </div>
+              </div>
+
+              {isOpen && (
+                <div className="leaderboard-dropdown">
+                  <ParticipantTips participantId={person.id} />
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
+
       <Pagination
         currentPage={page}
         totalPages={totalPages}
@@ -124,12 +135,6 @@ const Poängtabell = ({ hasSubmitted }) => {
         visibleCount={visibleParticipants.length}
         totalCount={participants.length}
       />
-      {selectedParticipant && (
-        <ParticipantTips
-          participant={selectedParticipant}
-          onClose={() => setSelectedParticipant(null)}
-        />
-      )}
     </section>
   );
 };

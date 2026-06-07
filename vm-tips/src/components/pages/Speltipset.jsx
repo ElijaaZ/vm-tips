@@ -87,7 +87,7 @@ const Speltipset = ({ user, hasSubmitted, setHasSubmitted, participantId }) => {
   };
 
   const [page, setPage] = useState(1);
-  const perPage = 6;
+  const perPage = 20;
   const totalPages = Math.ceil(matches.length / perPage);
   const startIndex = (page - 1) * perPage;
   const currentMatches = matches.slice(startIndex, startIndex + perPage);
