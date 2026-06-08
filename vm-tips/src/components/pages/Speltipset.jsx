@@ -10,6 +10,8 @@ import { useTipValidation } from "../../hooks/useTipValidation";
 import { useUserTips } from "../../hooks/useUserTips";
 
 const Speltipset = ({ user, hasSubmitted, setHasSubmitted, participantId }) => {
+  const DEADLINE = new Date("2026-06-11T21:00:00+02:00");
+  const isDeadlinePassed = new Date() >= DEADLINE;
   const [, setParticipantId] = useState(null);
   const { matches, loadingMatches, matchesError } = useMatches();
   const {
@@ -28,6 +30,11 @@ const Speltipset = ({ user, hasSubmitted, setHasSubmitted, participantId }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (isDeadlinePassed) {
+      alert("Deadline har passerat. Det går inte längre att skicka in tips.");
+      return;
+    }
 
     if (!isValid) return;
 
@@ -115,6 +122,11 @@ const Speltipset = ({ user, hasSubmitted, setHasSubmitted, participantId }) => {
           <br /> Du kan nu bara se dina svar.
         </p>
       )}
+      {!hasSubmitted && isDeadlinePassed && (
+        <p className="speltipset-info deadline-warning">
+          Deadline har passerat. Det går inte längre att lämna tips.
+        </p>
+      )}
 
       <form onSubmit={handleSubmit}>
         <BonusAnswers
@@ -147,8 +159,12 @@ const Speltipset = ({ user, hasSubmitted, setHasSubmitted, participantId }) => {
               totalCount={matches.length}
             />
             {!hasSubmitted && (
-              <button type="submit" className="submit-btn" disabled={!isValid}>
-                Skicka in tips
+              <button
+                type="submit"
+                className="submit-btn"
+                disabled={!isValid || isDeadlinePassed}
+              >
+                {isDeadlinePassed ? "Deadline har passerat" : "Skicka in tips"}
               </button>
             )}
           </div>
