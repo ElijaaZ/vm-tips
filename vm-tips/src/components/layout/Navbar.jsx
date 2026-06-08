@@ -16,6 +16,12 @@ const Navbar = ({ user, adminEmail }) => {
         Speltipset
       </button>
       <button
+        className={`nav-link ${isActive("/matchcenter")}`}
+        onClick={() => navigate("/matchcenter")}
+      >
+        Matchcenter
+      </button>
+      <button
         className={`nav-link ${isActive("/poangtabell")}`}
         onClick={() => navigate("/poangtabell")}
       >

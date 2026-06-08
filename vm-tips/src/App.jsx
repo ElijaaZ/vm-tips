@@ -3,6 +3,7 @@ import AppHeader from "./components/layout/AppHeader";
 import Navbar from "./components/layout/Navbar";
 import { useEffect, useState } from "react";
 import Speltipset from "./components/pages/Speltipset";
+import Matchcenter from "./components/pages/Matchcenter";
 import Regler from "./components/pages/Regler";
 import Poängtabell from "./components/pages/Poängtabell";
 import Auth from "./components/auth/Auth";
@@ -67,6 +68,7 @@ function App() {
               />
             }
           />
+          <Route path="/matchcenter" element={<Matchcenter />} />
           <Route
             path="/poangtabell"
             element={

@@ -1,0 +1,121 @@
+.matchcenter {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 28px 20px 50px;
+  color: white;
+}
+
+.matchcenter h2 {
+  font-size: 28px;
+  margin-bottom: 4px;
+}
+
+.total-goals-card {
+  background: #06152e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 18px 22px;
+  margin: 20px 0 24px;
+}
+
+.total-goals-card h3 {
+  margin: 0 0 6px;
+  font-size: 16px;
+  color: #fff;
+}
+
+.total-goals-card strong {
+  font-size: 32px;
+  color: #d4a017;
+}
+
+.groups-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.group-table-card {
+  background: #06152e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 16px;
+}
+
+.group-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.group-card-header h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #fff;
+}
+
+.group-card-header span {
+  font-size: 11px;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.group-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.group-table th {
+  font-size: 11px;
+  color: #94a3b8;
+  text-transform: uppercase;
+  text-align: left;
+  padding: 8px 4px;
+}
+
+.group-table td {
+  padding: 9px 4px;
+  font-size: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.group-table th:nth-child(1),
+.group-table td:nth-child(1) {
+  width: 28px;
+  color: #94a3b8;
+}
+
+.group-table th:nth-child(3),
+.group-table th:nth-child(4),
+.group-table th:nth-child(5),
+.group-table td:nth-child(3),
+.group-table td:nth-child(4),
+.group-table td:nth-child(5) {
+  text-align: right;
+}
+
+.group-table td:nth-child(2) {
+  font-weight: 700;
+}
+
+.group-table td strong {
+  color: #d4a017;
+}
+
+@media (max-width: 1000px) {
+  .groups-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  .groups-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .matchcenter {
+    padding: 20px 14px 40px;
+  }
+}
