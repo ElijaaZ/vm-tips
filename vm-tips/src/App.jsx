@@ -69,18 +69,7 @@ function App() {
             }
           />
           <Route path="/matchcenter" element={<Matchcenter />} />
-          <Route
-            path="/poangtabell"
-            element={
-              hasSubmitted ? (
-                <Poängtabell hasSubmitted={hasSubmitted} />
-              ) : (
-                <p style={{ textAlign: "center", marginTop: "2rem" }}>
-                  Du måste skicka in dina tips först för att se poängtabellen.
-                </p>
-              )
-            }
-          />
+          <Route path="/poangtabell" element={<Poängtabell />} />
           <Route path="/regler" element={<Regler />} />
           <Route path="/tips/:id" element={<ParticipantTips />} />
           <Route
