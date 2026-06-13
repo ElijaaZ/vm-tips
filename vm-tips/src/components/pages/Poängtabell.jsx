@@ -5,15 +5,13 @@ import { supabase } from "../../lib/supabaseClient";
 import { calculateMatchPoints } from "../../utils/calculatePoints";
 import ParticipantTips from "./ParticipantTips";
 
-const Poängtabell = ({ hasSubmitted }) => {
+const Poängtabell = () => {
   const [openParticipantId, setOpenParticipantId] = useState(null);
   const [participants, setParticipants] = useState([]);
   const [page, setPage] = useState(1);
   const perPage = 15;
 
   useEffect(() => {
-    if (!hasSubmitted) return; // gör inget om användaren inte har submitat
-
     // Definiera async-funktion inuti useEffect
     const fetchParticipants = async () => {
       try {
@@ -82,7 +80,7 @@ const Poängtabell = ({ hasSubmitted }) => {
               return b.total_points - a.total_points;
             }
 
-            return a.goal_diff - b.goal_goal_diff;
+            return a.goal_diff - b.goal_diff;
           }),
         );
       } catch (err) {
@@ -91,7 +89,7 @@ const Poängtabell = ({ hasSubmitted }) => {
     };
 
     fetchParticipants(); // Kör async-funktionen
-  }, [hasSubmitted]);
+  }, []);
 
   const sortedParticipants = [...participants].sort((a, b) => {
     if (b.total_points !== a.total_points) {
@@ -107,9 +105,6 @@ const Poängtabell = ({ hasSubmitted }) => {
     startIndex + perPage,
   );
   const totalPages = Math.ceil(participants.length / perPage);
-
-  // Om användaren inte submitat, rendera ingenting
-  if (!hasSubmitted) return null;
 
   return (
     <section className="poängtabell">
